@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<%- include('./includes/head.ejs') -%>
+
+
+    <body>
+
+
+        <%- include('./includes/nav.ejs') -%>
+
+
+
+            <!-- Hero Start -->
+            <div class="container-fluid bg-primary hero-header mb-5">
+                <div class="container text-center">
+
+                </div>
+            </div>
+            <!-- Hero End -->
+
+            <!-- Product Start -->
+            <div class="container-fluid py-5">
+                <div class="container">
+
+                    <div class="row g-4">
+                        <div class="col-4">
+                            <img src="../../uploads/<%= data.thumbnail %>" style="width: 100%;" alt="">
+
+                        </div>
+                        <div class="col-8">
+                            <div class="card" style="min-height: 365px;">
+                                <div class="p-3">
+                                    <h2 class="">
+                                        <%= data.name %>
+                                    </h2>
+                                    <h4 class="text-danger mt-3">
+                                        <%= data.sale_price %> đ
+                                    </h4>
+                                    <span class="mt-2">
+                                        <%= data.price %> đ
+                                    </span>
+                                    <div class="d-block">
+                                        <button class="btn btn-warning ">Mua Ngay</button>
+                                        <button class="btn btn-primary ">Thêm Vào Giỏ Hàng</button>
+                                    </div>
+
+                                    <p class="mt-3">
+                                        <%= data.des %>
+
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Product End -->
+
+
+
+
+            <%- include('./includes/footer.ejs') -%>
+
+
+
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+                <%- include('./includes/scripts.ejs') -%>
+
+
+    </body>
+
+</html>

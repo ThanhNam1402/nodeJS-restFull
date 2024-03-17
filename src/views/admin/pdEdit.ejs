@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--begin::Head-->
+
+<%- include('./includes/sheet.ejs') -%>
+
+    <!--end::Head-->
+    <!--begin::Body-->
+
+    <body id="kt_body"
+        class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed"
+        style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+        <!--begin::Main-->
+        <!--begin::Root-->
+        <div class="d-flex flex-column flex-root">
+            <!--begin::Page-->
+            <div class="page d-flex flex-row flex-column-fluid">
+                <!--begin::Aside-->
+
+                <%- include('./includes/aside.ejs') -%>
+
+                    <!--end::Aside-->
+                    <!--begin::Wrapper-->
+                    <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+                        <!--begin::Header-->
+
+                        <%- include('./includes/head.ejs') -%>
+
+
+                            <!--end::Header-->
+                            <!--begin::Content-->
+                            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                                <!--begin::Toolbar-->
+                                <div class="toolbar" id="kt_toolbar">
+                                    <!--begin::Container-->
+                                    <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+                                        <!--begin::Page title-->
+                                        <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                                            data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                                            class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                                            <!--begin::Title-->
+                                            <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">
+                                                Sản Phẩm
+
+                                            </h1>
+                                            <!--end::Title-->
+                                        </div>
+
+                                        <!--end::Actions-->
+                                    </div>
+                                    <!--end::Container-->
+                                </div>
+                                <!--end::Toolbar-->
+                                <!--begin::Post-->
+                                <div class="post d-flex flex-column-fluid" id="kt_post">
+                                    <!--begin::Container-->
+                                    <div id="kt_content_container" class="container-xxl">
+
+                                        <!-- CONTENT -->
+
+                                        <div class="card mb-5 mb-xl-8">
+                                            <!--begin::Header-->
+                                            <div class="card-header border-0 pt-5">
+                                                <h3 class="card-title align-items-start flex-column">
+                                                    <span class="card-label fw-bolder fs-3 mb-1">Chỉnh Sửa Sản
+                                                        Phẩm</span>
+                                                </h3>
+
+                                            </div>
+                                            <!--end::Header-->
+                                            <!--begin::Body-->
+                                            <div class="card-body py-lg-10 px-lg-10">
+                                                <!--begin::Table container-->
+
+                                                <form action="/admin/editProduct" method="post"
+                                                    enctype="multipart/form-data">
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="name" class="form-label">Tên Sản
+                                                                            Phẩm</label>
+                                                                        <input type="text" class="form-control"
+                                                                            id="name" name="name"
+                                                                            value="<%= data.name %>"
+                                                                            placeholder="Tên Sản Phẩm....">
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text" hidden name="id"
+                                                                    value="<%= data.id %>">
+                                                                <div class="col-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="price" class="form-label">Giá
+                                                                            Bán</label>
+                                                                        <input type="number" name="price"
+                                                                            class="form-control" id="price"
+                                                                            value="<%= data.price %>" placeholder="120">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="mb-3">
+                                                                        <label for="sale_price" class="form-label">Giá
+                                                                            Giảm</label>
+                                                                        <input type="number" class="form-control"
+                                                                            name="sale_price" id="sale_price"
+                                                                            value="<%= data.sale_price %>"
+                                                                            placeholder="120">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="mb-3">
+                                                                        <label for="des" class="form-label">Mô
+                                                                            Tả</label>
+                                                                        <textarea class="form-control" name="des"
+                                                                            id="des" rows="3"><%= data.des %></textarea>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <div
+                                                                class="p-3 text-center d-flex flex-column align-items-center">
+                                                                <label class="btn btn-primary mb-3 " for="imgInp">Sửa
+                                                                    Ảnh</label>
+                                                                <input accept="image/*" type='file' name="thumbnail"
+                                                                    hidden id="imgInp" onchange="loadFile(event)" />
+                                                                <img src="../../uploads/<%= data.thumbnail %>"
+                                                                    style="width: 200px; height: 300px;" id="blah"
+                                                                    class="d-block" alt="">
+                                                            </div>
+                                                        </div>
+
+                                                        <script>
+                                                            var loadFile = function (event) {
+                                                                var output = document.getElementById('blah');
+                                                                output.src = URL.createObjectURL(event.target.files[0]);
+                                                                output.onload = function () {
+                                                                    URL.revokeObjectURL(output.src) // free memory
+                                                                }
+                                                            };
+                                                        </script>
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary mt-5">Cập Nhật</button>
+
+
+                                                </form>
+
+
+                                                <!--end::Table container-->
+                                            </div>
+                                            <!--begin::Body-->
+                                        </div>
+
+
+                                    </div>
+                                    <!--end::Container-->
+                                </div>
+                                <!--end::Post-->
+                            </div>
+                            <!--end::Content-->
+
+                            <!--begin::Footer-->
+
+                            <%- include('./includes/footer.ejs') -%>
+
+                                <!--end::Footer-->
+                    </div>
+                    <!--end::Wrapper-->
+            </div>
+            <!--end::Page-->
+        </div>
+        <!--end::Root-->
+
+        <!--begin::Scrolltop-->
+        <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+            <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+            <span class="svg-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)"
+                        fill="black" />
+                    <path
+                        d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z"
+                        fill="black" />
+                </svg>
+            </span>
+            <!--end::Svg Icon-->
+        </div>
+        <!--end::Scrolltop-->
+        <!--end::Main-->
+
+        <%- include('./includes/modals.ejs') -%>
+
+
+    </body>
+    <!--end::Body-->
+
+    <%- include('./includes/scripts.ejs') -%>
+
+
+</html>

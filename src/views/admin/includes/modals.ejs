@@ -1,0 +1,94 @@
+<!--begin::Modal - Create App-->
+<div class="modal fade" id="kt_modal_create_app" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-900px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header">
+                <!--begin::Modal title-->
+                <h2>Thêm Sản Phẩm</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                transform="rotate(-45 6 17.3137)" fill="black" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                fill="black" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <div class="modal-body py-lg-10 px-lg-10">
+                <form action="/admin/addProduct" method="post" enctype="multipart/form-data">
+
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Tên Sản Phẩm</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            placeholder="Tên Sản Phẩm....">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="price" class="form-label">Giá Bán</label>
+                                        <input type="number" name="price" class="form-control" id="price"
+                                            placeholder="120">
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="sale_price" class="form-label">Giá Giảm</label>
+                                        <input type="number" class="form-control" name="sale_price" id="sale_price"
+                                            placeholder="120">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="des" class="form-label">Mô Tả</label>
+                                        <textarea class="form-control" name="des" id="des" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-3 text-center">
+                                <label class="btn btn-primary mb-3" for="imgInp">Thêm Ảnh</label>
+                                <input accept="image/*" type='file' name="thumbnail" hidden id="imgInp" />
+                                <img src="https://i.pinimg.com/736x/fe/9f/c5/fe9fc53618e47885bf815cb9a2699b75.jpg"
+                                    style="width: 200px; height: 300px;" id="blah" alt="">
+                            </div>
+                        </div>
+
+                        <script>
+                            imgInp.onchange = evt => {
+                                const [file] = imgInp.files
+                                if (file) {
+                                    blah.src = URL.createObjectURL(file)
+                                }
+                            }
+                        </script>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-5">Thêm</button>
+
+
+                </form>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
